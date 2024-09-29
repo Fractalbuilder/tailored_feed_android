@@ -1,22 +1,31 @@
 import React, { useContext } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, Image } from 'react-native';
 import AuthContext from '../context/AuthContext';
+import { LoginScreenStyles } from '../styles/LoginScreenStyles';
 
 const LoginScreen = () => {
     const { loginUser, setUsername, setPassword } = useContext(AuthContext);
 
     return (
-        <View>
-            <TextInput
-                placeholder="Username"
-                onChangeText={setUsername} // Update username state
+        <View style={LoginScreenStyles.container}>
+            <Image
+                source={require('../images/icons/Tailored_feed.png')}
+                style={LoginScreenStyles.logo}
             />
             <TextInput
-                placeholder="Password"
+                placeholder="Usuario"
+                onChangeText={setUsername}
+                style={LoginScreenStyles.input}
+            />
+            <TextInput
+                placeholder="Clave"
                 secureTextEntry
-                onChangeText={setPassword} // Update password state
+                onChangeText={setPassword}
+                style={LoginScreenStyles.input}
             />
-            <Button title="Login" onPress={loginUser} />
+            <View style={LoginScreenStyles.buttonContainer}>
+                <Button title="Ingresar" onPress={loginUser} color={LoginScreenStyles.button.backgroundColor} />
+            </View>
         </View>
     );
 };

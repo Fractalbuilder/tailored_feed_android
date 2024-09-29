@@ -1,16 +1,28 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native'; // Import NavigationContainer
-import { AuthProvider } from './src/context/AuthContext'; // Adjust the path as necessary
-import AppNavigator from './src/utils/AppNavigator'; // Import your navigator
-import Header from './src/components/Header'; // Import your navigator
+import React, { useContext } from 'react';
+import { NavigationContainer } from '@react-navigation/native'; 
+import AuthContext from './src/context/AuthContext';
+import { AuthProvider } from './src/context/AuthContext'; 
+import AppNavigator from './src/utils/AppNavigator'; 
+import Header from './src/components/Header'; 
+import ProductsScreen from './src/screens/ProductsScreen';
+
+const AppContent = () => {
+    const { user } = useContext(AuthContext); // Access the user from context
+
+    return (
+        <>
+            {user && <Header />}
+            <AppNavigator />
+        </>
+    );
+};
 
 const App = () => {
-    return (
+    return (    
         <NavigationContainer>
             <AuthProvider>
-                <Header/>
-                    <AppNavigator />
-            </AuthProvider>
+            <AppContent />
+            </AuthProvider>    
         </NavigationContainer>
     );
 };
