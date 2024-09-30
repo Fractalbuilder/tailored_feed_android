@@ -1,7 +1,0 @@
-Github token:
-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
-
-Install:
-npm install jwt-decode
-npm install axios
-npm install dayjs
