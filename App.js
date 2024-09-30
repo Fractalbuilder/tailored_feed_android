@@ -3,11 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import AuthContext from './src/context/AuthContext';
 import { AuthProvider } from './src/context/AuthContext'; 
 import AppNavigator from './src/utils/AppNavigator'; 
-import Header from './src/components/Header'; 
-import ProductsScreen from './src/screens/ProductsScreen';
+import Header from './src/components/Header';
 
 const AppContent = () => {
-    const { user } = useContext(AuthContext); // Access the user from context
+    const { user } = useContext(AuthContext);
 
     return (
         <>
@@ -21,7 +20,7 @@ const App = () => {
     return (    
         <NavigationContainer>
             <AuthProvider>
-            <AppContent />
+                <AppContent />
             </AuthProvider>    
         </NavigationContainer>
     );

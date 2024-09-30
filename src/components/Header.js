@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthContext';
 import { HeaderStyles } from '../styles/HeaderStyles';
 
 const Header = () => {
-  const { user, logoutUser } = useContext(AuthContext);
+  const { logoutUser } = useContext(AuthContext);
 
   return (
     <View style={HeaderStyles.header}>

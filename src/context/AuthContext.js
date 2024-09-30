@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
                 setAuthTokens(data);
                 setUser(jwtDecode(data.access));
                 await AsyncStorage.setItem('authTokens', JSON.stringify(data));
-                navigation.navigate('ProductsScreen');
+                navigation.navigate('AssessmentsScreen');
             } else {
                 alert('Credenciales inválidas');
             }
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
                 setAuthTokens(data);
                 setUser(jwtDecode(data.access));
                 await AsyncStorage.setItem('authTokens', JSON.stringify(data));
-                navigation.navigate('ProductsScreen');
+                navigation.navigate('AccessmentsScreen');
             } else {
                 alert('User registration failed');
             }
