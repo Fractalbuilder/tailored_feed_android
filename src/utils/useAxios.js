@@ -6,8 +6,9 @@ import { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native'; // Use this for navigation
 import AuthContext from '../context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Use AsyncStorage
+import config from '../../src/config';
 
-const baseURL = 'http://192.168.1.118:8082';
+const baseURL = `${config.backendUrl}`;
 
 const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);

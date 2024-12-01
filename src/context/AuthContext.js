@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from 'react';
 import {jwtDecode} from 'jwt-decode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import config from '../../src/config';
 
 const AuthContext = createContext();
 
@@ -32,7 +33,7 @@ export const AuthProvider = ({ children }) => {
 
     const loginUser = async () => {
         try {
-            const response = await fetch('http://192.168.1.118:8082/external-login/', {
+            const response = await fetch(`${config.backendUrl}/external-login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +60,7 @@ export const AuthProvider = ({ children }) => {
 
     const registerUser = async () => {
         try {
-            const response = await fetch('http://192.168.1.118:8082/user/', {
+            const response = await fetch(`${config.backendUrl}/user/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
