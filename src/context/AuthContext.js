@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
 
     const loginUser = async () => {
         try {
-            const response = await fetch('http://192.168.1.124:8082/external-login/', {
+            const response = await fetch('http://192.168.1.118:8082/external-login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
 
     const registerUser = async () => {
         try {
-            const response = await fetch('http://192.168.1.124:8082/user/', {
+            const response = await fetch('http://192.168.1.118:8082/user/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,6 +68,7 @@ export const AuthProvider = ({ children }) => {
                     username,
                     email: '',
                     password,
+                    role: 'student'
                 }),
             });
             const data = await response.json();
@@ -76,7 +77,7 @@ export const AuthProvider = ({ children }) => {
                 setAuthTokens(data);
                 setUser(jwtDecode(data.access));
                 await AsyncStorage.setItem('authTokens', JSON.stringify(data));
-                navigation.navigate('AccessmentsScreen');
+                navigation.navigate('AssessmentsScreen');
             } else {
                 alert('User registration failed');
             }

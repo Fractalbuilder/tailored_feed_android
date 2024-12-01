@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
-import { View, TextInput, Button, Image } from 'react-native';
+import { View, TextInput, Button, Image, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import AuthContext from '../context/AuthContext';
 import { GeneralStyles } from '../styles/GeneralStyles';
-import { LoginScreenStyles } from '../styles/LoginScreenStyles';
+import { AuthenticationScreen } from '../styles/AuthenticationScreenStyles';
 
 const LoginScreen = () => {
     const { loginUser, setUsername, setPassword } = useContext(AuthContext);
+    const navigation = useNavigation();
 
     return (
-        <View style={LoginScreenStyles.container}>
+        <View style={AuthenticationScreen.container}>
             <Image
                 source={require('../images/icons/Tailored_feed.png')}
-                style={LoginScreenStyles.logo}
+                style={AuthenticationScreen.logo}
             />
             <TextInput
                 placeholder="Usuario"
@@ -26,8 +28,20 @@ const LoginScreen = () => {
                 onChangeText={setPassword}
                 style={GeneralStyles.input}
             />
-            <View style={LoginScreenStyles.buttonContainer}>
-                <Button title="Ingresar" onPress={loginUser} color={LoginScreenStyles.button.backgroundColor} />
+            <View style={AuthenticationScreen.buttonContainer}>
+                <Button title="Ingresar" onPress={loginUser} color={AuthenticationScreen.button.backgroundColor} />
+            </View>
+            
+            <View style={AuthenticationScreen.redirectionLink}>
+                <Text style={AuthenticationScreen.redirectionText}>
+                    ¿No tiene cuenta?{' '}
+                    <Text
+                        style={AuthenticationScreen.link}
+                        onPress={() => navigation.navigate('RegisterScreen')}
+                    >
+                        Regístrese aquí
+                    </Text>
+                </Text>
             </View>
         </View>
     );

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const LoginScreenStyles = StyleSheet.create({
+export const AuthenticationScreen = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -19,5 +19,15 @@ export const LoginScreenStyles = StyleSheet.create({
   },
   button: {
       backgroundColor: '#44aa00ff',
+  },
+  link: {
+    color: '#44aa00ff',
+  },
+  redirectionLink: {
+    marginTop: 10,
+  },
+  redirectionText: {
+    color: '#ffffff', 
+    fontSize: 16,
   }
 });

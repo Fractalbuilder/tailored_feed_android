@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigation } from '@react-navigation/native';
 
-const baseURL = 'http://192.168.1.124:8082';
+const baseURL = 'http://192.168.1.118:8082';
 
 const useAxios = () => {
   const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
