@@ -5,6 +5,7 @@ import { GeneralStyles } from '../styles/GeneralStyles';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import AssessmentsScreen from '../screens/assessment/AssessmentsScreen';
+import AssessmentScreen from '../screens/assessment/AssessmentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const AppNavigator = () => {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="AssessmentsScreen" component={AssessmentsScreen} />
+        <Stack.Screen name="AssessmentScreen" component={AssessmentScreen} />
       </Stack.Navigator>
     </View>
   );

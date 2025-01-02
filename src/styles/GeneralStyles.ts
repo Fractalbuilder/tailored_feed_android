@@ -39,17 +39,13 @@ export const GeneralStyles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
   },
-  buttonContainer: {
+  button: {
     backgroundColor: '#44aa00ff',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginTop: 20,
   },
-  buttonText: {
-    color: '#800000ff',
-    fontSize: 18,
-    fontWeight: 'bold',
+  buttonLabel: {
+    marginBottom: 5,
   },
+  item: {
+    marginBottom: 12
+  }
 });
