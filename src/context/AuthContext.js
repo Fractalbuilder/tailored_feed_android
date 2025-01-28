@@ -4,6 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import config from '../../src/config';
 
+const backendIp = `${config.backendIp}`;
+const apiPort = `${config.apiPort}`;
 const AuthContext = createContext();
 
 export default AuthContext;
@@ -33,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
     const loginUser = async () => {
         try {
-            const response = await fetch(`${config.backendUrl}/external-login/`, {
+            const response = await fetch(`http://${backendIp}:${apiPort}/external-login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +51,7 @@ export const AuthProvider = ({ children }) => {
                 setAuthTokens(data);
                 setUser(jwtDecode(data.access));
                 await AsyncStorage.setItem('authTokens', JSON.stringify(data));
-                navigation.navigate('AssessmentsScreen');
+                navigation.navigate('SessionsScreen');
             } else {
                 alert('Credenciales inválidas');
             }
@@ -60,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
     const registerUser = async () => {
         try {
-            const response = await fetch(`${config.backendUrl}/user/`, {
+            const response = await fetch(`http://${backendIp}:${apiPort}/user/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +80,7 @@ export const AuthProvider = ({ children }) => {
                 setAuthTokens(data);
                 setUser(jwtDecode(data.access));
                 await AsyncStorage.setItem('authTokens', JSON.stringify(data));
-                navigation.navigate('AssessmentsScreen');
+                navigation.navigate('SessionsScreen');
             } else {
                 alert('User registration failed');
             }

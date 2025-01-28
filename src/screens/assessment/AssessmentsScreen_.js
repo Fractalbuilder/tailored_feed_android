@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { GeneralStyles } from '../../styles/GeneralStyles';
 
-const AssessmentsScreen = () => {
+const SessionsScreen_ = () => {
   return (
     <View style={GeneralStyles.container}>
       <Text style={GeneralStyles.title}>Evaluaciones</Text>
@@ -11,4 +11,4 @@ const AssessmentsScreen = () => {
   );
 };
 
-export default AssessmentsScreen_;
+export default SessionsScreen_;

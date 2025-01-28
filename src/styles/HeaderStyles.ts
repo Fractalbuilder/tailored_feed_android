@@ -24,5 +24,6 @@ export const HeaderStyles = StyleSheet.create({
   link: {
     color: 'white',
     fontWeight: 'bold',
+    marginLeft: 20
   },
 });

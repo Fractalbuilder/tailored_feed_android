@@ -1,5 +1,7 @@
 const config = {
-    backendUrl: 'http://192.168.80.19:8082',
+    backendIp: '192.168.1.116',
+    apiPort: '8082',
+    channelsPort: '8083',
 };
   
 export default config;

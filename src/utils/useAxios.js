@@ -8,14 +8,16 @@ import AuthContext from '../context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Use AsyncStorage
 import config from '../../src/config';
 
-const baseURL = `${config.backendUrl}`;
+const backendIp = `${config.backendIp}`;
+const apiPort = `${config.apiPort}`;
+const backendUrl = `http://${backendIp}:${apiPort}`;
 
 const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
-    const navigation = useNavigation(); // Change to useNavigation
+    const navigation = useNavigation();
 
     const axiosInstance = axios.create({
-        baseURL,
+        backendUrl,
         headers: { Authorization: `Bearer ${authTokens?.access}` }
     });
 
@@ -26,11 +28,10 @@ const useAxios = () => {
         if (!isExpired) return req;
 
         try {
-            const response = await axios.post(`${baseURL}/token/refresh/`, {
+            const response = await axios.post(`http://${backendIp}:${apiPort}/token/refresh/`, {
                 refresh: authTokens.refresh
             });
 
-            // Use AsyncStorage instead of localStorage
             await AsyncStorage.setItem('authTokens', JSON.stringify(response.data));
             setAuthTokens(response.data);
             setUser(jwtDecode(response.data.access));
@@ -39,10 +40,10 @@ const useAxios = () => {
             return req;
         } catch (error) {
             if (error.response && (error.response.status === 400 || error.response.status === 500)) {
-                await AsyncStorage.removeItem('authTokens'); // Use AsyncStorage
+                await AsyncStorage.removeItem('authTokens');
                 setAuthTokens(null);
                 setUser(null);
-                navigation.navigate('LoginScreen'); // Use navigate instead of redirect
+                navigation.navigate('LoginScreen');
             }
 
             return Promise.reject(error);

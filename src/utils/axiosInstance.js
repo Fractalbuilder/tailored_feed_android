@@ -7,14 +7,16 @@ import { AuthContext } from '../context/AuthContext';
 import { useNavigation } from '@react-navigation/native';
 import config from '../../src/config';
 
-const baseURL = `${config.backendUrl}`;
+const backendIp = `${config.backendIp}`;
+const apiPort = `${config.apiPort}`;
+const backendUrl = `http://${backendIp}:${apiPort}`;
 
 const useAxios = () => {
   const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
   const navigation = useNavigation();
 
   const axiosInstance = axios.create({
-    baseURL,
+    backendUrl,
     headers: { Authorization: `Bearer ${authTokens?.access}` },
   });
 
@@ -25,7 +27,7 @@ const useAxios = () => {
     if (!isExpired) return req;
 
     try {
-      const response = await axios.post(`${baseURL}/token/refresh/`, {
+      const response = await axios.post(`http://${backendIp}:${apiPort}/token/refresh/`, {
         refresh: authTokens.refresh,
       });
 
