@@ -11,16 +11,18 @@ const QuestionComponent = (
   useEffect(() => {
     setSelectedIndices([]);
   }, [question]);
-
+  
   const handleOptionSelect = useCallback((index) => {
     setSelectedIndices((prevSelectedIndices) => {
       const isSelectedIndex = prevSelectedIndices.includes(index);
-      return isSelectedIndex
+      const newIndices = isSelectedIndex
         ? prevSelectedIndices.filter((selectedIndex) => selectedIndex !== index)
         : [...prevSelectedIndices, index];
+
+      return newIndices.sort((a, b) => a - b);
     });
   }, []);
-
+  
   const handleSendAnswer = () => {
     if (selectedOptionsIndices.length === 0) {
       alert('Please select at least one option.');

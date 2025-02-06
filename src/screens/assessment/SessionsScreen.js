@@ -16,14 +16,10 @@ const SessionsScreen = ({ navigation }) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      // Open the SSE connection when the screen is focused
       const eventSource = new EventSource(`http://${backendIp}:${apiPort}/sse/sessions/`);
       eventSourceRef.current = eventSource;
 
       eventSource.addEventListener('message', (event) => {
-        console.log("Message received:", event.data);
-        console.log(new Date().toLocaleTimeString());
-
         try {
           const parsedData = JSON.parse(event.data);
           setSessions(parsedData);
