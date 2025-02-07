@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, Button, FlatList, TouchableOpacity } from 'react-native';
 import { GeneralStyles } from '../../styles/GeneralStyles';
 import { QuestionComponentStyles as Styles } from '../../styles/QuestionComponentStyles';
 
 const QuestionComponent = (
-  { ws, question, sessionId, totalQuestions, userId }: { ws: any, question: any, sessionId: any, totalQuestions: any, userId: any }
+  { ws, question, sessionId, totalQuestions, userId, bandwidth, luminosity, noiseLevel }: 
+  { 
+    ws: any, question: any, sessionId: any, totalQuestions: any, userId: any 
+    bandwidth: any, luminosity: any, noiseLevel: any
+  }
 ) => {
   const [selectedOptionsIndices, setSelectedIndices] = useState<number[]>([]);
 
@@ -31,10 +35,14 @@ const QuestionComponent = (
     
     let questionId = question['id'];
     let questionIndex = question['index'];
+    let userContext = { bandwidth, luminosity, noiseLevel }
 
     ws.send(JSON.stringify(
       { 
-        type: 'answer', payload: { sessionId, userId, questionId, selectedOptionsIndices, questionIndex, totalQuestions }
+        type: 'answer', payload: 
+        { 
+          sessionId, userId, questionId, selectedOptionsIndices, questionIndex, totalQuestions, userContext
+        }
       }
     ));
   };
