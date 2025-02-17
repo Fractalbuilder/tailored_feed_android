@@ -6,7 +6,7 @@ import { GeneralStyles } from '../styles/GeneralStyles';
 import { AuthenticationScreen } from '../styles/AuthenticationScreenStyles';
 
 const RegisterScreen = () => {
-    const { registerUser, setUsername, setPassword } = useContext(AuthContext);
+    const { registerUser, setExternalId, setUsername, setPassword } = useContext(AuthContext);
     const navigation = useNavigation();
 
     return (
@@ -14,6 +14,13 @@ const RegisterScreen = () => {
             <Image
                 source={require('../images/icons/Tailored_feed.png')}
                 style={AuthenticationScreen.logo}
+            />
+            <TextInput
+                placeholder="Código SIMCA"
+                placeholderTextColor="#C0C0C0"
+                onChangeText={setExternalId}
+                style={GeneralStyles.input}
+                keyboardType="numeric"
             />
             <TextInput
                 placeholder="Usuario"

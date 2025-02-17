@@ -29,7 +29,7 @@ const QuestionComponent = (
   
   const handleSendAnswer = () => {
     if (selectedOptionsIndices.length === 0) {
-      alert('Please select at least one option.');
+      alert('Por favor seleccione al menos una opción');
       return;
     }
     

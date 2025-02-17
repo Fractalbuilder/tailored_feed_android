@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
     const [authTokens, setAuthTokens] = useState(null);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [externalId, setExternalId] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -68,6 +69,7 @@ export const AuthProvider = ({ children }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    externalId: parseInt(externalId, 10),
                     username,
                     email: '',
                     password,
@@ -75,14 +77,24 @@ export const AuthProvider = ({ children }) => {
                 }),
             });
             const data = await response.json();
-
+            
             if (response.status === 201) {
                 setAuthTokens(data);
                 setUser(jwtDecode(data.access));
                 await AsyncStorage.setItem('authTokens', JSON.stringify(data));
                 navigation.navigate('SessionsScreen');
+            } else if (response.status === 400) {
+                console.error(data);
+                
+                if(data['externalId']) {
+                    alert("Registro invalido. Ya existe un usuario con el Código SIMCA '" + externalId + "'");
+                } else {
+                    alert("Registro invalido. Ya existe un usuario llamado '" + username + "'");
+                }
             } else {
-                alert('User registration failed');
+                console.error(response.status);
+                console.error(data);
+                alert('El registro falló. Asegúrese de proporcionar un código, nombre y clave válidos');
             }
         } catch (error) {
             console.error('Registration failed:', error);
@@ -104,6 +116,7 @@ export const AuthProvider = ({ children }) => {
         loginUser,
         registerUser,
         logoutUser,
+        setExternalId,
         setUsername,
         setPassword,
     };
