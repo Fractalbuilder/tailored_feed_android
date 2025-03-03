@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain', // Maintain aspect ratio
   },
   text: {
-    fontSize: 40,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#800000ff',

@@ -6,8 +6,8 @@ import { QuestionComponentStyles as Styles } from '../../styles/QuestionComponen
 const QuestionComponent = (
   { ws, question, sessionId, totalQuestions, userId, bandwidth, luminosity, noiseLevel }: 
   { 
-    ws: any, question: any, sessionId: any, totalQuestions: any, userId: any 
-    bandwidth: any, luminosity: any, noiseLevel: any
+    ws: any, question: any, sessionId: any, totalQuestions: any, 
+    userId: any, bandwidth: any, luminosity: any, noiseLevel: any
   }
 ) => {
   const [selectedOptionsIndices, setSelectedIndices] = useState<number[]>([]);

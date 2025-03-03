@@ -14,7 +14,7 @@ const backendIp = `${config.backendIp}`;
 const channelsPort = `${config.channelsPort}`;
 
 const SessionScreen = ({ route }) => {
-    const { sessionId, sessionName, totalQuestions, userId } = route.params;
+    const { sessionId, sessionName, totalQuestions, duration, userId } = route.params;
     const [question, setQuestion] = useState('');
     const [response, setResponse] = useState('');
     const [ws, setWs] = useState(null);
@@ -27,7 +27,7 @@ const SessionScreen = ({ route }) => {
     const [noiseLevel, setNoiseLevel] = useState<number | null>(0);
     
     useEffect(() => {
-        const ws = new WebSocket(`ws://${backendIp}:${channelsPort}/ws/session/${sessionId}/${userId}/${totalQuestions}/`, {
+        const ws = new WebSocket(`ws://${backendIp}:${channelsPort}/ws/session/${sessionId}/${userId}/${totalQuestions}/${duration}/`, {
             headers: {
                 Origin: `http://${backendIp}:${channelsPort}`,
             }
@@ -134,7 +134,7 @@ const SessionScreen = ({ route }) => {
           <Text style={GeneralStyles.title}>{sessionName}</Text>
 
           {currentQuestion && <QuestionComponent 
-            ws={ws} question={currentQuestion} sessionId={sessionId} totalQuestions={totalQuestions} userId={userId} 
+            ws={ws} question={currentQuestion} sessionId={sessionId} totalQuestions={totalQuestions} duration={duration} userId={userId} 
             bandwidth={bandwidth} luminosity={luminosity} noiseLevel={noiseLevel}
           />}
           

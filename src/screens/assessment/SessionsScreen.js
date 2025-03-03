@@ -46,7 +46,7 @@ const SessionsScreen = ({ navigation }) => {
     }, []) // No dependencies to ensure a fresh start on each focus
   );
 
-  const accessSession = (id, name, totalQuestions) => {
+  const accessSession = (id, name, totalQuestions, duration) => {
     if (eventSourceRef.current) {
       eventSourceRef.current.close();
       console.log("SSE connection manually closed");
@@ -56,6 +56,7 @@ const SessionsScreen = ({ navigation }) => {
       sessionId: id,
       sessionName: name,
       totalQuestions: totalQuestions,
+      duration: duration,
       userId: user['user_id'],
     });
   };
@@ -72,7 +73,7 @@ const SessionsScreen = ({ navigation }) => {
             <Button
               title="Ingresar"
               color={GeneralStyles.button.backgroundColor}
-              onPress={() => accessSession(session.id, session.name, session.totalQuestions)}
+              onPress={() => accessSession(session.id, session.name, session.totalQuestions, session.duration)}
             />
           </View>
         ))

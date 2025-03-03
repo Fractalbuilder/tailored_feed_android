@@ -7,7 +7,7 @@ const config = {
 
 // Producttion
 /*const config = {
-    backendIp: '34.238.247.6',
+    backendIp: '52.207.238.45',
     apiPort: '80',
     channelsPort: '80',
 };*/
