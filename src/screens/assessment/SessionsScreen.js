@@ -6,11 +6,11 @@ import config from '../../config';
 import AuthContext from '../../context/AuthContext';
 import { GeneralStyles } from '../../styles/GeneralStyles';
 
-const backendIp = `${config.backendIp}`;
+//const backendIp = `${config.backendIp}`;
 const apiPort = `${config.apiPort}`;
 
 const SessionsScreen = ({ navigation }) => {
-  const { user } = useContext(AuthContext);
+  const { user, backendIp } = useContext(AuthContext);
   const [sessions, setSessions] = useState([]);
   const eventSourceRef = useRef(null);
 

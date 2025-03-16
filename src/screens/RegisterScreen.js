@@ -6,7 +6,7 @@ import { GeneralStyles } from '../styles/GeneralStyles';
 import { AuthenticationScreen } from '../styles/AuthenticationScreenStyles';
 
 const RegisterScreen = () => {
-    const { registerUser, setExternalId, setUsername, setPassword } = useContext(AuthContext);
+    const { registerUser, setExternalId, setUsername, setPassword, setBackendIp } = useContext(AuthContext);
     const navigation = useNavigation();
 
     return (
@@ -16,7 +16,7 @@ const RegisterScreen = () => {
                 style={AuthenticationScreen.logo}
             />
             <TextInput
-                placeholder="Código SIMCA"
+                placeholder="Número de Identificación"
                 placeholderTextColor="#C0C0C0"
                 onChangeText={setExternalId}
                 style={GeneralStyles.input}
@@ -34,6 +34,13 @@ const RegisterScreen = () => {
                 secureTextEntry
                 onChangeText={setPassword}
                 style={GeneralStyles.input}
+            />
+            <TextInput
+                placeholder="Host"
+                placeholderTextColor="#C0C0C0"
+                onChangeText={setBackendIp}
+                style={GeneralStyles.input}
+                keyboardType="numeric"
             />
             <View style={AuthenticationScreen.buttonContainer}>
                 <Button title="Registrarse" onPress={registerUser} color={AuthenticationScreen.button.backgroundColor} />

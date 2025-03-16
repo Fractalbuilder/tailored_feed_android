@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Button,  StyleSheet, NativeModules } from 'react-native';
 import config from '../../config';
+import { useContext } from 'react';
+import AuthContext from '../../context/AuthContext';
 import { GeneralStyles } from '../../styles/GeneralStyles';
 import { SessionScreenStyles as Styles } from '../../styles/SessionScreenStyles';
 import QuestionComponent from './QuestionComponent';
@@ -10,10 +12,11 @@ import NoiseLevelModule from 'react-native-sound-level';
 const { BandwidthModule, LuminosityModule } = NativeModules;
 const DETECTION_TIME = 1000;
 
-const backendIp = `${config.backendIp}`;
+//const backendIp = `${config.backendIp}`;
 const channelsPort = `${config.channelsPort}`;
 
 const SessionScreen = ({ route }) => {
+    const { backendIp } = useContext(AuthContext);
     const { sessionId, sessionName, totalQuestions, duration, userId } = route.params;
     const [question, setQuestion] = useState('');
     const [response, setResponse] = useState('');

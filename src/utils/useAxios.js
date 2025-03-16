@@ -8,13 +8,14 @@ import AuthContext from '../context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Use AsyncStorage
 import config from '../../src/config';
 
-const backendIp = `${config.backendIp}`;
+//const backendIp = `${config.backendIp}`;
 const apiPort = `${config.apiPort}`;
-const backendUrl = `http://${backendIp}:${apiPort}`;
+//const backendUrl = `http://${backendIp}:${apiPort}`;
 
 const useAxios = () => {
-    const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
+    const { authTokens, setUser, setAuthTokens, backendIp } = useContext(AuthContext);
     const navigation = useNavigation();
+    const backendUrl = `http://${backendIp}:${apiPort}`;
 
     const axiosInstance = axios.create({
         backendUrl,

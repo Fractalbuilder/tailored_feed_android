@@ -6,7 +6,7 @@ import { GeneralStyles } from '../styles/GeneralStyles';
 import { AuthenticationScreen } from '../styles/AuthenticationScreenStyles';
 
 const LoginScreen = () => {
-    const { loginUser, setUsername, setPassword } = useContext(AuthContext);
+    const { loginUser, setUsername, setPassword, setBackendIp } = useContext(AuthContext);
     const navigation = useNavigation();
 
     return (
@@ -27,6 +27,13 @@ const LoginScreen = () => {
                 secureTextEntry
                 onChangeText={setPassword}
                 style={GeneralStyles.input}
+            />
+            <TextInput
+                placeholder="Host"
+                placeholderTextColor="#C0C0C0"
+                onChangeText={setBackendIp}
+                style={GeneralStyles.input}
+                keyboardType="numeric"
             />
             <View style={AuthenticationScreen.buttonContainer}>
                 <Button title="Ingresar" onPress={loginUser} color={AuthenticationScreen.button.backgroundColor} />

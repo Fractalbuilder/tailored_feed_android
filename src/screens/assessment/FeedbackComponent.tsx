@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, Image, Dimensions } from 'react-native';
 import config from '../../config';
+import { useContext } from 'react';
+import AuthContext from '../../context/AuthContext';
 import { GeneralStyles } from '../../styles/GeneralStyles';
 
-const backendIp = `${config.backendIp}`;
+//const backendIp = `${config.backendIp}`;
 const apiPort = `${config.apiPort}`;
-const backendUrl = `http://${backendIp}:${apiPort}`;
+//const backendUrl = `http://${backendIp}:${apiPort}`;
 
 const FeedbackComponent = ({
   feedback,
@@ -14,6 +16,8 @@ const FeedbackComponent = ({
   feedback: any;
   setFeedback: (feedback: any) => void;
 }) => {
+  const { backendIp } = useContext(AuthContext);
+  const backendUrl = `http://${backendIp}:${apiPort}`;
   if (!feedback) return null;
 
   const { width, height } = Dimensions.get('window'); // Get screen dimensions

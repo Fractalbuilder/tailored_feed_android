@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import config from '../../src/config';
 
-const backendIp = `${config.backendIp}`;
+//const backendIp = `${config.backendIp}`;
 const apiPort = `${config.apiPort}`;
 const AuthContext = createContext();
 
@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
     const [externalId, setExternalId] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [backendIp, setBackendIp] = useState('');
 
     const navigation = useNavigation();
 
@@ -58,6 +59,7 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             console.error('Login failed:', error);
+            alert('Login fallido: ' + error);
         }
     };
 
@@ -98,6 +100,7 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             console.error('Registration failed:', error);
+            alert('Registro fallido: ' + error);
         }
     };
 
@@ -119,6 +122,8 @@ export const AuthProvider = ({ children }) => {
         setExternalId,
         setUsername,
         setPassword,
+        setBackendIp,
+        backendIp,
     };
 
     return (

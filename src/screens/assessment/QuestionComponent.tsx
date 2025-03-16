@@ -11,9 +11,11 @@ const QuestionComponent = (
   }
 ) => {
   const [selectedOptionsIndices, setSelectedIndices] = useState<number[]>([]);
+  const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
     setSelectedIndices([]);
+    setIsSending(false);
   }, [question]);
   
   const handleOptionSelect = useCallback((index) => {
@@ -32,6 +34,8 @@ const QuestionComponent = (
       alert('Por favor seleccione al menos una opción');
       return;
     }
+
+    setIsSending(true);
     
     let questionId = question['id'];
     let questionIndex = question['index'];
@@ -72,7 +76,7 @@ const QuestionComponent = (
         renderItem={renderOption}
         keyExtractor={(item, index) => index.toString()}
       />
-      <Button title="Enviar" onPress={handleSendAnswer} disabled={selectedOptionsIndices.length === 0} />
+      <Button title="Enviar" onPress={handleSendAnswer} disabled={isSending || selectedOptionsIndices.length === 0} />
     </View>
   );
 };

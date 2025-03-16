@@ -1,13 +1,13 @@
 // Development
 const config = {
-    backendIp: '192.168.1.120',
+    //backendIp: '192.168.1.120',
     apiPort: '8082',
     channelsPort: '8083',
 };
 
 // Producttion
 /*const config = {
-    backendIp: '52.207.238.45',
+    //backendIp: '3.95.208.232',
     apiPort: '80',
     channelsPort: '80',
 };*/
